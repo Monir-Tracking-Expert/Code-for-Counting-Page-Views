@@ -1,0 +1,14 @@
+<script>
+  var pageViewCount = parseInt(localStorage.getItem('page_view_count')) || 0;
+
+  pageViewCount++;
+  localStorage.setItem('page_view_count', pageViewCount);
+
+  // Push event to dataLayer when user views 7+ pages
+  if (pageViewCount === 7) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'seven_page_views'
+    });
+  }
+</script>
