@@ -1,14 +1,16 @@
 <script>
+(function() {
   var pageViewCount = parseInt(localStorage.getItem('page_view_count')) || 0;
-
   pageViewCount++;
   localStorage.setItem('page_view_count', pageViewCount);
-
-  // Push event to dataLayer when user views 7+ pages
-  if (pageViewCount === 7) {
+  
+  // Fire event when user has viewed 7+ pages (lifetime)
+  if (pageViewCount >= 7) {  // Changed === to >=
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      event: 'seven_page_views'
+      event: 'highly_engaged_visitor',
+      total_page_views: pageViewCount
     });
   }
+})();
 </script>
